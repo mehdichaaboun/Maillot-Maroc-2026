@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Maillot Maroc 2026</title>
+    <meta name="description" content="Commander le maillot du Maroc 2026 en rouge ou blanc, tailles S à XXL.">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body class="theme-red">
+    <header class="site-header" aria-label="En-tete">
+      <a class="brand" href="#commande" aria-label="Maillot Maroc 2026">
+        <span class="brand-mark">M</span>
+        <span>Maillot Maroc 2026</span>
+      </a>
+      <a class="header-action" href="#commande">Commander</a>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="Présentation du maillot">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Rouge et blanc - Livraison au Maroc</p>
+          <h1>Maillot Maroc 2026</h1>
+          <p class="hero-copy">
+            Choisissez votre couleur, votre taille, puis laissez vos coordonnées pour confirmer la commande.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-link" href="#commande">Commander maintenant</a>
+            <a class="ghost-link" href="#details">Voir les details</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="product-band" id="details" aria-label="Détails produit">
+        <div class="product-copy">
+          <p class="section-kicker">Édition supporters</p>
+          <h2>Un design inspiré des couleurs du Maroc.</h2>
+          <p>
+            Disponible en rouge et en blanc, avec des tailles de S à XXL. Le formulaire envoie chaque commande
+            vers votre feuille Google Sheets après configuration.
+          </p>
+        </div>
+        <div class="product-gallery" aria-label="Photos du maillot">
+            <img src="assets/maillot-rouge.jpg" alt="Maillot Maroc rouge, détail face avant" loading="lazy">
+            <img src="assets/maillot-blanc.jpg" alt="Maillot Maroc blanc, face avant" loading="lazy">
+          <img src="assets/detail-rouge.jpg" alt="Détail du maillot rouge" loading="lazy">
+        </div>
+      </section>
+
+      <section class="order-section" id="commande" aria-label="Formulaire de commande">
+        <div class="order-preview" aria-live="polite">
+          <div class="preview-frame">
+            <img id="jerseyImage" src="assets/maillot-rouge.jpg" alt="Maillot Maroc rouge selectionne">
+          </div>
+          <div class="preview-caption">
+            <span id="selectedColorLabel">Couleur: Rouge</span>
+            <span id="selectedSizeLabel">Taille: M</span>
+          </div>
+        </div>
+
+        <form class="order-form" id="orderForm">
+          <p class="section-kicker">Commande</p>
+          <h2>Réservez votre maillot</h2>
+
+          <fieldset>
+            <legend>1 - Couleur du maillot</legend>
+            <div class="option-grid color-options">
+              <label class="choice color-choice active" data-color="Rouge">
+                <input type="radio" name="couleur" value="Rouge" checked>
+                <span class="choice-check" aria-hidden="true">✓</span>
+                <span class="choice-image-wrap">
+                  <img src="assets/maillot-rouge.jpg" alt="" loading="lazy">
+                </span>
+                <span class="choice-title">Rouge — Domicile</span>
+                <span class="choice-subtitle">Maillot officiel domicile</span>
+              </label>
+              <label class="choice color-choice" data-color="Blanc">
+                <input type="radio" name="couleur" value="Blanc">
+                <span class="choice-check" aria-hidden="true">✓</span>
+                <span class="choice-image-wrap">
+                  <img src="assets/maillot-blanc.jpg" alt="" loading="lazy">
+                </span>
+                <span class="choice-title">Blanc — Extérieur</span>
+                <span class="choice-subtitle">Maillot officiel extérieur</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>2 - Taille</legend>
+            <div class="option-grid size-options">
+              <label class="choice"><input type="radio" name="taille" value="S"><span>S</span></label>
+              <label class="choice active"><input type="radio" name="taille" value="M" checked><span>M</span></label>
+              <label class="choice"><input type="radio" name="taille" value="L"><span>L</span></label>
+              <label class="choice"><input type="radio" name="taille" value="XL"><span>XL</span></label>
+              <label class="choice"><input type="radio" name="taille" value="XXL"><span>XXL</span></label>
+            </div>
+          </fieldset>
+
+          <div class="price-box" aria-live="polite">
+            <span>Prix</span>
+            <strong id="selectedPrice">120.00 DH</strong>
+          </div>
+          <input type="hidden" name="prix" value="120.00 DH">
+
+          <label class="field">
+            <span>Nom complet</span>
+            <input type="text" name="nom" autocomplete="name" required placeholder="Votre nom">
+          </label>
+
+          <label class="field">
+            <span>Adresse</span>
+            <textarea name="adresse" rows="3" autocomplete="street-address" required placeholder="Ville, quartier, adresse complète"></textarea>
+          </label>
+
+          <label class="field">
+            <span>Téléphone</span>
+            <input type="tel" name="telephone" autocomplete="tel" required inputmode="tel" placeholder="06 00 00 00 00">
+          </label>
+
+          <button class="submit-button" type="submit">Envoyer la commande</button>
+          <p class="form-status" id="formStatus" role="status"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Maillot Maroc 2026</span>
+      <a href="#commande">Commander</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
