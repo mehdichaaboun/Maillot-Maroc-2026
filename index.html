@@ -43,7 +43,7 @@
           </p>
         </div>
         <div class="product-gallery" aria-label="Photos du maillot">
-            <img src="assets/maillot-rougee.jpg" alt="Maillot Maroc rouge, détail face avant" loading="lazy">
+            <img src="assets/maillot-rouge.jpg" alt="Maillot Maroc rouge, détail face avant" loading="lazy">
             <img src="assets/maillot-blanc.jpg" alt="Maillot Maroc blanc, face avant" loading="lazy">
           <img src="assets/detail-rouge.jpg" alt="Détail du maillot rouge" loading="lazy">
         </div>
@@ -54,9 +54,13 @@
           <div class="preview-frame">
             <img id="jerseyImage" src="assets/maillot-rouge.jpg" alt="Maillot Maroc rouge selectionne">
           </div>
+          <button class="flip-button" type="button" id="flipPreviewButton" aria-label="Voir le dos du maillot">
+            Retourner
+          </button>
           <div class="preview-caption">
             <span id="selectedColorLabel">Couleur: Rouge</span>
             <span id="selectedSizeLabel">Taille: M</span>
+            <span id="selectedSideLabel">Face avant</span>
           </div>
         </div>
 
@@ -89,21 +93,27 @@
           </fieldset>
 
           <fieldset>
-            <legend>2 - Taille</legend>
-            <div class="option-grid size-options">
-              <label class="choice"><input type="radio" name="taille" value="S"><span>S</span></label>
-              <label class="choice active"><input type="radio" name="taille" value="M" checked><span>M</span></label>
-              <label class="choice"><input type="radio" name="taille" value="L"><span>L</span></label>
-              <label class="choice"><input type="radio" name="taille" value="XL"><span>XL</span></label>
-              <label class="choice"><input type="radio" name="taille" value="XXL"><span>XXL</span></label>
+            <legend>2 - Quantité</legend>
+            <div class="option-grid quantity-options">
+              <label class="choice active"><input type="radio" name="quantite" value="1" checked><span>1</span></label>
+              <label class="choice"><input type="radio" name="quantite" value="2"><span>2</span></label>
+              <label class="choice"><input type="radio" name="quantite" value="3"><span>3</span></label>
+              <label class="choice"><input type="radio" name="quantite" value="4"><span>4</span></label>
             </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>3 - Couleur et taille</legend>
+            <div class="size-groups" id="sizeGroups"></div>
           </fieldset>
 
           <div class="price-box" aria-live="polite">
             <span>Prix</span>
-            <strong id="selectedPrice">120.00 DH</strong>
+            <strong id="selectedPrice">110 DH</strong>
           </div>
-          <input type="hidden" name="prix" value="120.00 DH">
+          <input type="hidden" name="prix" value="110 DH">
+          <input type="hidden" name="couleurs" value="Rouge">
+          <input type="hidden" name="tailles" value="M">
 
           <label class="field">
             <span>Nom complet</span>
