@@ -63,20 +63,18 @@ function getSelectedSizes() {
 
 function getSelectedColors() {
   const quantity = getQuantity();
+  const defaultColor = getDefaultColor();
 
   if (quantity === 1) {
-    return [getDefaultColor()];
+    return [defaultColor];
   }
 
-  const colors = [getDefaultColor()];
+  const extraColors = Array.from(
+    sizeGroups.querySelectorAll("input[data-kind='color']:checked")
+  ).map((input) => input.value);
 
-colors.push(
-  ...Array.from(
-    sizeGroups.querySelectorAll("input[data-kind='color']:checked')
-  ).map((input) => input.value)
-);
-
-return colors;
+  return [defaultColor, ...extraColors];
+}
 
 function formatChoiceLabel(colors, sizes, quantity) {
   if (quantity === 1) {
@@ -107,20 +105,19 @@ function updateColor(color) {
 function updatePrice() {
   const quantity = getQuantity();
   const price = PRICE_BY_QUANTITY[quantity] || PRICE_BY_QUANTITY[1];
+
   const colors = getSelectedColors();
   const sizes = getSelectedSizes();
-  const defaultColor = getDefaultColor();
-
-  const finalColors = quantity === 1 ? [defaultColor] : colors;
-  const finalSizes = sizes.length ? sizes : ["M"];
 
   selectedPrice.textContent = price;
   priceInput.value = price;
-  colorsInput.value = finalColors.join(", ");
-  sizesInput.value = finalSizes.join(", ");
-  selectedSizeLabel.textContent = `Taille: ${formatChoiceLabel(finalColors, finalSizes, quantity)}`;
+  colorsInput.value = colors.join(", ");
+  sizesInput.value = sizes.join(", ");
 
-  updateColor(finalColors[0] || defaultColor);
+  selectedSizeLabel.textContent =
+    formatChoiceLabel(colors, sizes);
+
+  updateColor(colors[0]);
 }
 
 function createItemColorOptions(index, selectedColor) {
@@ -193,25 +190,30 @@ function renderSizeGroups() {
   sizeGroups.innerHTML = "";
 
   for (let index = 0; index < quantity; index += 1) {
-    const selectedSize = previousSizes[index] || previousSizes[0] || "M";
-    const selectedColor =
-      quantity === 1
-        ? defaultColor
-        : previousColors[index] || previousColors[0] || defaultColor;
+    const selectedSize = previousSizes[index] || "M";
 
     const group = document.createElement("div");
     group.className = "size-group";
 
     const title = document.createElement("span");
     title.className = "size-group-title";
-    title.textContent = quantity === 1 ? "Maillot 1" : `Maillot ${index + 1}`;
+    title.textContent = `Maillot ${index + 1}`;
     group.appendChild(title);
 
+    // First jersey uses the main color selection
     if (quantity > 1 && index > 0) {
-  group.append(...createItemColorOptions(index, selectedColor));
-}
+      const selectedColor =
+        previousColors[index] || defaultColor;
 
-    group.append(...createItemSizeOptions(index, selectedSize));
+      group.append(
+        ...createItemColorOptions(index, selectedColor)
+      );
+    }
+
+    group.append(
+      ...createItemSizeOptions(index, selectedSize)
+    );
+
     sizeGroups.appendChild(group);
   }
 
