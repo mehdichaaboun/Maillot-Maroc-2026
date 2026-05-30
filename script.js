@@ -68,10 +68,15 @@ function getSelectedColors() {
     return [getDefaultColor()];
   }
 
-  return Array.from(sizeGroups.querySelectorAll("input[data-kind='color']:checked")).map(
-    (input) => input.value,
-  );
-}
+  const colors = [getDefaultColor()];
+
+colors.push(
+  ...Array.from(
+    sizeGroups.querySelectorAll("input[data-kind='color']:checked')
+  ).map((input) => input.value)
+);
+
+return colors;
 
 function formatChoiceLabel(colors, sizes, quantity) {
   if (quantity === 1) {
@@ -202,9 +207,9 @@ function renderSizeGroups() {
     title.textContent = quantity === 1 ? "Maillot 1" : `Maillot ${index + 1}`;
     group.appendChild(title);
 
-    if (quantity > 1) {
-      group.append(...createItemColorOptions(index, selectedColor));
-    }
+    if (quantity > 1 && index > 0) {
+  group.append(...createItemColorOptions(index, selectedColor));
+}
 
     group.append(...createItemSizeOptions(index, selectedSize));
     sizeGroups.appendChild(group);
