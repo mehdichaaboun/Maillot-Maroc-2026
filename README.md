@@ -28,7 +28,7 @@ Quand le client choisit plusieurs maillots, il peut sélectionner une couleur et
 
 ```js
 const SPREADSHEET_ID = "170sd_2ga_TC_EyX6ytkTd1lDajX2aVelU4w2qf-zQHY";
-const NOTIFICATION_EMAIL = "onlinefootballmatch@gmail.com";
+const NOTIFICATION_EMAIL = "chaaboun.mhd@gmail.com";
 ```
 
 5. Cliquez sur `Deploy > New deployment`.
