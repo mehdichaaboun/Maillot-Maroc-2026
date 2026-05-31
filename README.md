@@ -6,7 +6,7 @@ Site statique en français pour GitHub Pages avec formulaire de commande vers Go
 
 La feuille connectée est:
 
-https://docs.google.com/spreadsheets/d/170sd_2ga_TC_EyX6ytkTd1lDajX2aVelU4w2qf-zQHY/edit
+https://docs.google.com/spreadsheets/d/1PTGmV-t-f6eA9UASqCsnpwqddRUeOKC2EZl0HUpNrNA/edit?gid=0#gid=0
 
 Le script ajoute automatiquement les commandes dans l'onglet `Commandes`.
 
