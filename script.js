@@ -1,4 +1,4 @@
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzB4gJwK7YySurJawwQKERGcoZipIa9p34zxqLBjO7AHNPChzZqOfUEbxojXov7nngmtw/exec";
+const GOOGLE_SCRIPT_URL = "";
 const PRICE_BY_QUANTITY = {
   1: "110 DH",
   2: "190 DH",
@@ -38,52 +38,12 @@ const sizesInput = form.querySelector('input[name="tailles"]');
 const sizeGroups = document.querySelector("#sizeGroups");
 const formStatus = document.querySelector("#formStatus");
 const submitButton = form.querySelector(".submit-button");
-
 let previewSide = "front";
 
 function updateActiveChoices(groupName) {
   document.querySelectorAll(`input[name="${groupName}"]`).forEach((input) => {
-    input.closest(".choice")?.classList.toggle("active", input.checked);
+    input.closest(".choice").classList.toggle("active", input.checked);
   });
-}
-
-function getDefaultColor() {
-  return form.querySelector('input[name="couleur"]:checked')?.value || "Rouge";
-}
-
-function getQuantity() {
-  return Number(form.querySelector('input[name="quantite"]:checked')?.value || 1);
-}
-
-function getSelectedSizes() {
-  return Array.from(sizeGroups.querySelectorAll("input[data-kind='size']:checked")).map(
-    (input) => input.value,
-  );
-}
-
-function getSelectedColors() {
-  const quantity = getQuantity();
-  const defaultColor = getDefaultColor();
-
-  if (quantity === 1) {
-    return [defaultColor];
-  }
-
-  const extraColors = Array.from(
-    sizeGroups.querySelectorAll("input[data-kind='color']:checked")
-  ).map((input) => input.value);
-
-  return [defaultColor, ...extraColors];
-}
-
-function formatChoiceLabel(colors, sizes, quantity) {
-  if (quantity === 1) {
-    return `${colors[0] || "Rouge"} / ${sizes[0] || "M"}`;
-  }
-
-  return colors
-    .map((color, index) => `${index + 1}-${color} ${sizes[index] || "M"}`)
-    .join(" / ");
 }
 
 function updateColor(color) {
@@ -102,10 +62,30 @@ function updateColor(color) {
   );
 }
 
+function getDefaultColor() {
+  return form.querySelector('input[name="couleur"]:checked')?.value || "Rouge";
+}
+
+function getQuantity() {
+  return Number(form.querySelector('input[name="quantite"]:checked')?.value || 1);
+}
+
+function getSelectedSizes() {
+  return Array.from(sizeGroups.querySelectorAll("input[data-kind='size']:checked")).map((input) => input.value);
+}
+
+function getSelectedColors() {
+  return Array.from(sizeGroups.querySelectorAll("input[data-kind='color']:checked")).map((input) => input.value);
+}
+
+function formatChoiceLabel(colors, sizes) {
+  if (sizes.length <= 1) return `${colors[0] || "Rouge"} / ${sizes[0] || "M"}`;
+  return colors.map((color, index) => `${index + 1}-${color} ${sizes[index] || "M"}`).join(" / ");
+}
+
 function updatePrice() {
   const quantity = getQuantity();
   const price = PRICE_BY_QUANTITY[quantity] || PRICE_BY_QUANTITY[1];
-
   const colors = getSelectedColors();
   const sizes = getSelectedSizes();
 
@@ -113,11 +93,10 @@ function updatePrice() {
   priceInput.value = price;
   colorsInput.value = colors.join(", ");
   sizesInput.value = sizes.join(", ");
+  selectedSizeLabel.textContent = formatChoiceLabel(colors, sizes);
 
-  selectedSizeLabel.textContent =
-    formatChoiceLabel(colors, sizes);
-
-  updateColor(colors[0]);
+  const firstColor = colors[0] || getDefaultColor();
+  updateColor(firstColor);
 }
 
 function createItemColorOptions(index, selectedColor) {
@@ -181,7 +160,7 @@ function createItemSizeOptions(index, selectedSize) {
   return [label, options];
 }
 
-function renderSizeGroups() {
+function renderSizeGroups(forceDefaultColor = false) {
   const quantity = getQuantity();
   const previousSizes = getSelectedSizes();
   const previousColors = getSelectedColors();
@@ -190,30 +169,18 @@ function renderSizeGroups() {
   sizeGroups.innerHTML = "";
 
   for (let index = 0; index < quantity; index += 1) {
-    const selectedSize = previousSizes[index] || "M";
-
+    const selectedColor = forceDefaultColor ? defaultColor : previousColors[index] || previousColors[0] || defaultColor;
+    const selectedSize = previousSizes[index] || previousSizes[0] || "M";
     const group = document.createElement("div");
     group.className = "size-group";
 
     const title = document.createElement("span");
     title.className = "size-group-title";
-    title.textContent = `Maillot ${index + 1}`;
+    title.textContent = quantity === 1 ? "Maillot 1" : `Maillot ${index + 1}`;
     group.appendChild(title);
 
-    // First jersey uses the main color selection
-    if (quantity > 1 && index > 0) {
-      const selectedColor =
-        previousColors[index] || defaultColor;
-
-      group.append(
-        ...createItemColorOptions(index, selectedColor)
-      );
-    }
-
-    group.append(
-      ...createItemSizeOptions(index, selectedSize)
-    );
-
+    group.append(...createItemColorOptions(index, selectedColor));
+    group.append(...createItemSizeOptions(index, selectedSize));
     sizeGroups.appendChild(group);
   }
 
@@ -223,8 +190,7 @@ function renderSizeGroups() {
 document.querySelectorAll('input[name="couleur"]').forEach((input) => {
   input.addEventListener("change", () => {
     updateActiveChoices("couleur");
-    renderSizeGroups();
-    updateColor(input.value);
+    renderSizeGroups(true);
   });
 });
 
@@ -247,7 +213,6 @@ sizeGroups.addEventListener("change", (event) => {
   optionGrid.querySelectorAll(".choice").forEach((choice) => {
     choice.classList.toggle("active", choice.contains(event.target));
   });
-
   updatePrice();
 });
 
@@ -267,10 +232,7 @@ form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   if (!GOOGLE_SCRIPT_URL) {
-    setStatus(
-      "Ajoutez d'abord l'URL Google Apps Script dans script.js pour recevoir les commandes.",
-      "error",
-    );
+    setStatus("Ajoutez d'abord l'URL Google Apps Script dans script.js pour recevoir les commandes.", "error");
     return;
   }
 
