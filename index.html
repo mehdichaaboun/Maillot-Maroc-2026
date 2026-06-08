@@ -1,146 +1,271 @@
-<!doctype html>
-<html lang="fr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Maillot Maroc 2026</title>
-    <meta name="description" content="Commander le maillot du Maroc 2026 en rouge ou blanc, tailles S à XXL.">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body class="theme-red">
-    <header class="site-header" aria-label="En-tete">
-      <a class="brand" href="#commande" aria-label="Maillot Maroc 2026">
-        <span class="brand-mark">M</span>
-        <span>Maillot Maroc 2026</span>
-      </a>
-      <a class="header-action" href="#commande">Commander</a>
-    </header>
+<!DOCTYPE html>
+<html lang="en">
 
-    <main>
-      <section class="hero" aria-label="Présentation du maillot">
-        <div class="hero-bg" aria-hidden="true"></div>
-        <div class="hero-shade" aria-hidden="true"></div>
-        <div class="hero-content">
-          <p class="eyebrow">Rouge et blanc - Livraison au Maroc</p>
-          <h1>Maillot Maroc 2026</h1>
-          <p class="hero-copy">
-            Choisissez votre couleur, votre taille, puis laissez vos coordonnées pour confirmer la commande.
-          </p>
-          <div class="hero-actions">
-            <a class="primary-link" href="#commande">Commander maintenant</a>
-            <a class="ghost-link" href="#details">Voir les details</a>
-          </div>
-        </div>
-      </section>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ihkili احكيلي</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="image/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
 
-      <section class="product-band" id="details" aria-label="Détails produit">
-        <div class="product-copy">
-          <p class="section-kicker">Édition supporters</p>
-          <h2>Un design inspiré des couleurs du Maroc.</h2>
-          <p>
-            Disponible en rouge et en blanc, avec des tailles de S à XXL. Le formulaire envoie chaque commande
-            vers votre feuille Google Sheets après configuration.
-          </p>
-        </div>
-        <div class="product-gallery" aria-label="Photos du maillot">
-            <img src="assets/maillot-rouge.jpg" alt="Maillot Maroc rouge, détail face avant" loading="lazy">
-            <img src="assets/maillot-blanc.jpg" alt="Maillot Maroc blanc, face avant" loading="lazy">
-          <img src="assets/detail-rouge.jpg" alt="Détail du maillot rouge" loading="lazy">
-        </div>
-      </section>
+<body class="flex flex-col min-h-screen" lang="en">
 
-      <section class="order-section" id="commande" aria-label="Formulaire de commande">
-        <div class="order-preview" aria-live="polite">
-          <div class="preview-frame">
-            <img id="jerseyImage" src="assets/maillot-rouge.jpg" alt="Maillot Maroc rouge selectionne">
-          </div>
-          <button class="flip-button" type="button" id="flipPreviewButton" aria-label="Voir le dos du maillot">
-            Retourner
-          </button>
-          <div class="preview-caption">
-            <span id="selectedColorLabel">Couleur: Rouge</span>
-            <span id="selectedSizeLabel">Taille: M</span>
-            <span id="selectedSideLabel">Face avant</span>
-          </div>
-        </div>
+    <!-- Main Content -->
+    <div class="flex-1 flex items-center justify-center p-4">
+    <!-- Main Container Card -->
+    <div class="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 w-full max-w-xl border border-gray-100">
 
-        <form class="order-form" id="orderForm">
-          <p class="section-kicker">Commande</p>
-          <h2>Réservez votre maillot</h2>
-
-          <fieldset>
-            <legend>1 - Couleur du maillot</legend>
-            <div class="option-grid color-options">
-              <label class="choice color-choice active" data-color="Rouge">
-                <input type="radio" name="couleur" value="Rouge" checked>
-                <span class="choice-check" aria-hidden="true">✓</span>
-                <span class="choice-image-wrap">
-                  <img src="assets/maillot-rouge.jpg" alt="" loading="lazy">
-                </span>
-                <span class="choice-title">Rouge — Domicile</span>
-                <span class="choice-subtitle">Maillot officiel domicile</span>
-              </label>
-              <label class="choice color-choice" data-color="Blanc">
-                <input type="radio" name="couleur" value="Blanc">
-                <span class="choice-check" aria-hidden="true">✓</span>
-                <span class="choice-image-wrap">
-                  <img src="assets/maillot-blanc.jpg" alt="" loading="lazy">
-                </span>
-                <span class="choice-title">Blanc — Extérieur</span>
-                <span class="choice-subtitle">Maillot officiel extérieur</span>
-              </label>
+        <!-- Header with Logo, Text, and Language Buttons -->
+        <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center mb-6">
+                <img src="image/Logo.png" alt="Ihkili Logo" class="w-12 h-12 mr-3">
+                <h1 class="text-3xl font-bold text-gray-800" data-key="header-title">Story Creator</h1>
             </div>
-          </fieldset>
+        </div>
 
-          <fieldset>
-            <legend>2 - Quantité</legend>
-            <div class="option-grid quantity-options">
-              <label class="choice active"><input type="radio" name="quantite" value="1" checked><span>1</span></label>
-              <label class="choice"><input type="radio" name="quantite" value="2"><span>2</span></label>
-              <label class="choice"><input type="radio" name="quantite" value="3"><span>3</span></label>
-              <label class="choice"><input type="radio" name="quantite" value="4"><span>4</span></label>
+        <!-- The form tag now wraps all form fields to allow for submission -->
+        <!-- Replace the action URL with your unique URL from a form-to-email service like Formspree -->
+        <form action="https://formspree.io/f/your-form-id" method="POST">
+            <!-- Child's Name Input -->
+            <div class="mb-5">
+                <label class="block text-gray-600 font-medium mb-2 text-sm" for="child-name" data-key="child-name-label">Child's Name</label>
+                <div class="input-group">
+                    <div class="pl-4">
+                        <span role="img" aria-label="star" class="text-lg">⭐</span>
+                    </div>
+                    <input class="w-full p-3 bg-transparent rounded-lg text-gray-800 placeholder-gray-400 outline-none"
+                        type="text" id="child-name" name="child_name" data-key="child-name-placeholder" placeholder="Enter child's name">
+                </div>
             </div>
-          </fieldset>
+            
+            <!-- Story Category Dropdown -->
+            <div class="mb-5">
+                <label class="block text-gray-600 font-medium mb-2 text-sm" for="story-category" data-key="story-category-label">Story Category</label>
+                <div class="input-group relative">
+                    <div class="pl-4">
+                        <span role="img" aria-label="books" class="text-lg">📚</span>
+                    </div>
+                    <select
+                        class="appearance-none w-full p-3 bg-transparent rounded-lg text-gray-800 outline-none pr-8"
+                        name="story_category" id="story-category">
+                        <option value="" disabled selected data-key="select-category-option">Select a category</option>
+                        <option value="bedtime" data-key="bedtime-option">Bedtime Stories</option>
+                        <option value="adventure" data-key="adventure-option">Adventure Stories</option>
+                        <option value="animals" data-key="animals-option">Animal Stories</option>
+                        <option value="fairytales" data-key="fairytales-option">Fairy Tales</option>
+                        <option value="islamic" data-key="islamic-option">Islamic Stories</option>
+                        <option value="funny" data-key="funny-option">Funny Stories</option>
+                        <option value="family" data-key="family-option">Family Stories</option>
+                        <option value="educational" data-key="educational-option">Educational Stories</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 
-          <fieldset>
-            <legend>3 - Couleur et taille</legend>
-            <div class="size-groups" id="sizeGroups"></div>
-          </fieldset>
 
-          <div class="price-box" aria-live="polite">
-            <span>Prix</span>
-            <strong id="selectedPrice">110 DH</strong>
-          </div>
-          <input type="hidden" name="prix" value="110 DH">
-          <input type="hidden" name="couleurs" value="Rouge">
-          <input type="hidden" name="tailles" value="M">
+            <!-- Story Images Section -->
+            <div class="mb-5">
+                <div class="story-image-container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" data-category="bedtime" style="display: none;">                
+                  <!-- Book 1 -->
+                  <div class="text-center">
+                    <img src="image/Prince ADAM and the Shining Flower.png" 
+                         alt="Prince ADAM and the Shining Flower" 
+                         class="w-full h-auto rounded-lg story-image" 
+                         data-value="Prince ADAM and the Shining Flower" 
+                         data-alt-key="Prince-ADAM-and-the-Shining-Flower-alt">
+                    <p class="mt-2 text-sm font-medium text-gray-700">Prince ADAM and the Shining Flower</p>
+                  </div>
+                
+                  <!-- Book 2 -->
+                  <div class="text-center">
+                    <img src="image/AYOUB Explores the World of Jobs.png" 
+                         alt="AYOUB Explores the World of Jobs" 
+                         class="w-full h-auto rounded-lg story-image" 
+                         data-value="AYOUB Explores the World of Jobs" 
+                         data-alt-key="ayoub-explores-world-jobs-alt">
+                    <p class="mt-2 text-sm font-medium text-gray-700">AYOUB Explores the World of Jobs</p>
+                  </div>
+                
+                  <!-- Book 3 -->
+                  <div class="text-center">
+                    <img src="image/ZINEB and the Moon.png" 
+                         alt="ZINEB and the Moon" 
+                         class="w-full h-auto rounded-lg story-image" 
+                         data-value="ZINEB and the Moon" 
+                         data-alt-key="zineb-and-the-moon-alt">
+                    <p class="mt-2 text-sm font-medium text-gray-700">ZINEB and the Moon</p>
+                  </div>
+                
+                </div>
+                
+                <div class="story-image-container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" data-category="adventure" style="display: none;">
+                    <img src="https://placehold.co/100x100/d1fae5/374151?text=Dream+Gardens" alt="Dream Gardens" class="w-full h-auto rounded-lg story-image" data-value="Dream Gardens" data-alt-key="dream-gardens-alt">
+                    <img src="https://placehold.co/100x100/a7f3d0/374151?text=Space+Explorers" alt="Space Explorers" class="w-full h-auto rounded-lg story-image" data-value="Space Explorers" data-alt-key="space-explorers-alt">
+                    <img src="https://placehold.co/100x100/6ee7b7/374151?text=Epic+Quests" alt="Epic Quests" class="w-full h-auto rounded-lg story-image" data-value="Epic Quests" data-alt-key="epic-quests-alt">
+                </div>
+                <div class="story-image-container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" data-category="animals" style="display: none;">
+                    <img src="https://placehold.co/100x100/c7d2fe/374151?text=Animal+Friends" alt="Animal Friends" class="w-full h-auto rounded-lg story-image" data-value="Animal Friends" data-alt-key="animal-friends-alt">
+                    <img src="https://placehold.co/100x100/a5b4fc/374151?text=Jungle+Secrets" alt="Jungle Secrets" class="w-full h-auto rounded-lg story-image" data-value="Jungle Secrets" data-alt-key="jungle-secrets-alt">
+                </div>
+                <div class="story-image-container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" data-category="fairytales" style="display: none;">
+                    <img src="https://placehold.co/100x100/fbcfe8/374151?text=Little+Superheroes" alt="Little Superheroes" class="w-full h-auto rounded-lg story-image" data-value="Little Superheroes" data-alt-key="little-superheroes-alt-2">
+                    <img src="https://placehold.co/100x100/f9a8d4/374151?text=Knights+%26+Princesses" alt="Knights & Princesses" class="w-full h-auto rounded-lg story-image" data-value="Knights & Princesses" data-alt-key="knights-and-princesses-alt">
+                    <img src="https://placehold.co/100x100/f472b6/374151?text=Ocean+Treasures" alt="Ocean Treasures" class="w-full h-auto rounded-lg story-image" data-value="Ocean Treasures" data-alt-key="ocean-treasures-alt">
+                </div>
+                <div class="story-image-container text-gray-500 text-center py-8" data-category="islamic" style="display: none;">
+                    <span data-key="islamic-placeholder">Please provide images for Islamic Stories.</span>
+                </div>
+                <div class="story-image-container text-gray-500 text-center py-8" data-category="funny" style="display: none;">
+                    <span data-key="funny-placeholder">Please provide images for Funny Stories.</span>
+                </div>
+                <div class="story-image-container text-gray-500 text-center py-8" data-category="family" style="display: none;">
+                    <span data-key="family-placeholder">Please provide images for Family Stories.</span>
+                </div>
+                <div class="story-image-container text-gray-500 text-center py-8" data-category="educational" style="display: none;">
+                    <span data-key="educational-placeholder">Please provide images for Educational Stories.</span>
+                </div>
+                <input type="hidden" name="story_image" id="story-image-input">
+            </div>
 
-          <label class="field">
-            <span>Nom complet</span>
-            <input type="text" name="nom" autocomplete="name" required placeholder="Votre nom">
-          </label>
+            <!-- Age Options -->
+            <div class="mb-5">
+                <label class="block text-gray-600 font-medium mb-2 text-sm" data-key="age-label">Age</label>
+                <div class="flex flex-wrap gap-3">
+                    <button type="button" class="age-option bg-blue-50 text-blue-800 font-medium py-2 px-6 rounded-full transition-all duration-200 ease-in-out" data-value="2-4">2-4</button>
+                    <button type="button" class="age-option bg-pink-50 text-pink-800 font-medium py-2 px-6 rounded-full transition-all duration-200 ease-in-out" data-value="5-7">5-7</button>
+                    <button type="button" class="age-option bg-green-50 text-green-800 font-medium py-2 px-6 rounded-full transition-all duration-200 ease-in-out" data-value="8-9">8-9</button>
+                    <button type="button" class="age-option bg-yellow-50 text-yellow-800 font-medium py-2 px-6 rounded-full transition-all duration-200 ease-in-out" data-value="+11">+11</button>
+                    <input type="hidden" name="age" id="age-input">
+                </div>
+            </div>
 
-          <label class="field">
-            <span>Adresse</span>
-            <textarea name="adresse" rows="3" autocomplete="street-address" required placeholder="Ville, quartier, adresse complète"></textarea>
-          </label>
+            <!-- Language Select -->
+            <div class="mb-5">
+                <label class="block text-gray-600 font-medium mb-2 text-sm" for="language" data-key="language-label">Language</label>
+                <div class="input-group relative">
+                    <div class="pl-4">
+                        <span role="img" aria-label="happy face" class="text-lg">😊</span>
+                    </div>
+                    <select class="appearance-none w-full p-3 bg-transparent rounded-lg text-gray-800 outline-none pr-8"
+                        id="language" name="language">
+                        <option value="english" data-key="english-option">English</option>
+                        <option value="french" data-key="french-option">French</option>
+                        <option value="arabic" data-key="arabic-option">Arabic</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none">
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
 
-          <label class="field">
-            <span>Téléphone</span>
-            <input type="tel" name="telephone" autocomplete="tel" required inputmode="tel" placeholder="06 00 00 00 00">
-          </label>
+            <!-- Child Photo Upload -->
+            <div class="mb-6">
+                <label class="block text-gray-600 font-medium mb-2 text-sm" for="child-photo" data-key="child-photo-label">Child Photo</label>
+                <div class="flex items-center justify-center w-full">
+                    <label for="child-photo"
+                        class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-2xl cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors duration-200">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <svg class="w-8 h-8 mb-4 text-gray-500" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.894-1.788A2 2 0 0110.155 4h3.69A2 2 0 0115.4 5.322l.894 1.788a2 2 0 001.664.89H19a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2V9z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <p class="mb-2 text-sm text-gray-500" data-key="upload-text">
+                                <span class="font-semibold" data-key="click-to-upload">Click to upload</span> or drag and drop
+                            </p>
+                            <p class="text-xs text-gray-500" data-key="file-type-info">JPG, PNG, WEBP (MAX. 1MB)</p>
+                        </div>
+                        <input id="child-photo" type="file" class="hidden" accept=".jpg, .png, .webp" name="child_photo" />
+                    </label>
+                </div>
+            </div>
 
-          <button class="submit-button" type="submit">Envoyer la commande</button>
-          <p class="form-status" id="formStatus" role="status"></p>
+            <!-- Submit Button -->
+            <button type="submit"
+                class="w-full py-4 text-lg font-bold text-white bg-indigo-500 rounded-full hover:bg-indigo-600 transition-colors duration-200 shadow-md" data-key="submit-button">
+                Create Story
+            </button>
         </form>
-      </section>
-    </main>
 
-    <footer class="site-footer">
-      <span>Maillot Maroc 2026</span>
-      <a href="#commande">Commander</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white text-gray-800 py-12 border-t border-gray-200 w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <img src="image/Logo.png" alt="Ihkili Logo" class="w-8 h-8 mr-2">
+                        <span class="text-xl font-bold text-gray-900">Ihkili</span>
+                    </div>
+                    <div class="social-icons mb-4">
+                        <a href="https://www.facebook.com/ihkilii/" class="social-icon-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://www.instagram.com/ihkilii/" class="social-icon-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com" class="social-icon-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://x.com" class="social-icon-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-600 mb-4">Creating magical stories for children around the world. Personalized, educational, and engaging content that sparks imagination and learning.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-900">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-600 hover:text-indigo-600 transition-colors">Home</a></li>
+                        <li><a href="contact.html" class="text-gray-600 hover:text-indigo-600 transition-colors">Contact</a></li>
+                        <li><a href="faqs.html" class="text-gray-600 hover:text-indigo-600 transition-colors">FAQs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-900">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="privacy-policy.html" class="text-gray-600 hover:text-indigo-600 transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="text-gray-600 hover:text-indigo-600 transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-gray-900">Language</h3>
+                    <div class="footer-language-select">
+                        <select class="footer-language-dropdown" id="footer-language">
+                            <option value="english">English</option>
+                            <option value="french">French</option>
+                            <option value="arabic">Arabic</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 mt-8 pt-8 text-center">
+                <p class="text-gray-600">&copy; 2025 Ihkili. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
+    <!-- Custom JavaScript -->
     <script src="script.js"></script>
-  </body>
+
+</body>
+
 </html>

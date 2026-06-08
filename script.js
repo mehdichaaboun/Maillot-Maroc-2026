@@ -1,263 +1,292 @@
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxLWIZY0mxCkier79pdMpv-ENFIRVuWubWlbVwwDq7Rj0d0Oc9FctqDR1i0SIUkNw75EA/exec";
-const PRICE_BY_QUANTITY = {
-  1: "110 DH",
-  2: "190 DH",
-  3: "270 DH",
-  4: "350 DH",
-};
-const SIZES = ["S", "M", "L", "XL", "XXL"];
-const COLORS = ["Rouge", "Blanc"];
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const translations = {
+        'en': {
+            'header-title': 'Story Creator',
+            'child-name-label': 'Child\'s Name',
+            'child-name-placeholder': 'Enter child\'s name',
+            'story-category-label': 'Story Category',
+            'select-category-option': 'Select a category',
+            'bedtime-option': 'Bedtime Stories',
+            'adventure-option': 'Adventure Stories',
+            'animals-option': 'Animal Stories',
+            'fairytales-option': 'Fairy Tales',
+            'islamic-option': 'Islamic Stories',
+            'funny-option': 'Funny Stories',
+            'family-option': 'Family Stories',
+            'educational-option': 'Educational Stories',
+            'story-images-label': 'Story Images',
+            'stories-from-our-land-alt': 'Stories from Our Land',
+            'little-superheroes-alt': 'Little Superheroes',
+            'magic-carnival-alt': 'The Magic Carnival',
+            'dream-gardens-alt': 'Dream Gardens',
+            'space-explorers-alt': 'Space Explorers',
+            'epic-quests-alt': 'Epic Quests',
+            'animal-friends-alt': 'Animal Friends',
+            'jungle-secrets-alt': 'Jungle Secrets',
+            'little-superheroes-alt-2': 'Little Superheroes',
+            'knights-and-princesses-alt': 'Knights & Princesses',
+            'ocean-treasures-alt': 'Ocean Treasures',
+            'islamic-placeholder': 'Please provide images for Islamic Stories.',
+            'funny-placeholder': 'Please provide images for Funny Stories.',
+            'family-placeholder': 'Please provide images for Family Stories.',
+            'educational-placeholder': 'Please provide images for Educational Stories.',
+            'age-label': 'Age',
+            'language-label': 'Language',
+            'english-option': 'English',
+            'french-option': 'French',
+            'arabic-option': 'Arabic',
+            'child-photo-label': 'Child Photo',
+            'upload-text': 'Click to upload or drag and drop',
+            'click-to-upload': 'Click to upload',
+            'file-type-info': 'JPG, PNG, WEBP (MAX. 1MB)',
+            'submit-button': 'Create Story'
+        },
+        'ar': {
+            'header-title': 'صانع القصص',
+            'child-name-label': 'اسم الطفل',
+            'child-name-placeholder': 'أدخل اسم الطفل',
+            'story-category-label': 'فئة القصة',
+            'select-category-option': 'اختر فئة',
+            'bedtime-option': 'قصص ما قبل النوم',
+            'adventure-option': 'قصص المغامرات',
+            'animals-option': 'قصص الحيوانات',
+            'fairytales-option': 'قصص خيالية',
+            'islamic-option': 'قصص إسلامية',
+            'funny-option': 'قصص مضحكة',
+            'family-option': 'قصص عائلية',
+            'educational-option': 'قصص تعليمية',
+            'story-images-label': 'صور القصة',
+            'stories-from-our-land-alt': 'قصص من أرضنا',
+            'little-superheroes-alt': 'أبطال خارقون صغار',
+            'magic-carnival-alt': 'الكرنفال السحري',
+            'dream-gardens-alt': 'حدائق الأحلام',
+            'space-explorers-alt': 'مستكشفو الفضاء',
+            'epic-quests-alt': 'مهام ملحمية',
+            'animal-friends-alt': 'أصدقاء الحيوانات',
+            'jungle-secrets-alt': 'أسرار الغابة',
+            'little-superheroes-alt-2': 'أبطال خارقون صغار',
+            'knights-and-princesses-alt': 'فرسان وأميرات',
+            'ocean-treasures-alt': 'كنوز المحيط',
+            'islamic-placeholder': 'يرجى توفير صور للقصص الإسلامية.',
+            'funny-placeholder': 'يرجى توفير صور للقصص المضحكة.',
+            'family-placeholder': 'يرجى توفير صور للقصص العائلية.',
+            'educational-placeholder': 'يرجى توفير صور للقصص التعليمية.',
+            'age-label': 'العمر',
+            'language-label': 'اللغة',
+            'english-option': 'الإنجليزية',
+            'french-option': 'الفرنسية',
+            'arabic-option': 'العربية',
+            'child-photo-label': 'صورة الطفل',
+            'upload-text': 'انقر للتحميل أو اسحب وأفلت',
+            'click-to-upload': 'انقر للتحميل',
+            'file-type-info': 'JPG, PNG, WEBP (الحد الأقصى 1 ميجابايت)',
+            'submit-button': 'أنشئ القصة'
+        },
+        'fr': {
+            'header-title': 'Créateur d\'histoires',
+            'child-name-label': 'Nom de l\'enfant',
+            'child-name-placeholder': 'Entrez le nom de l\'enfant',
+            'story-category-label': 'Catégorie d\'histoire',
+            'select-category-option': 'Sélectionnez une catégorie',
+            'bedtime-option': 'Histoires pour le dodo',
+            'adventure-option': 'Histoires d\'aventure',
+            'animals-option': 'Histoires d\'animaux',
+            'fairytales-option': 'Contes de fées',
+            'islamic-option': 'Histoires islamiques',
+            'funny-option': 'Histoires amusantes',
+            'family-option': 'Histoires de famille',
+            'educational-option': 'Histoires éducatives',
+            'story-images-label': 'Images d\'histoire',
+            'stories-from-our-land-alt': 'Histoires de notre terre',
+            'little-superheroes-alt': 'Petits super-héros',
+            'magic-carnival-alt': 'Le carnaval magique',
+            'dream-gardens-alt': 'Jardins de rêve',
+            'space-explorers-alt': 'Explorateurs de l\'espace',
+            'epic-quests-alt': 'Quêtes épiques',
+            'animal-friends-alt': 'Amis animaux',
+            'jungle-secrets-alt': 'Secrets de la jungle',
+            'little-superheroes-alt-2': 'Petits super-héros',
+            'knights-and-princesses-alt': 'Chevaliers et princesses',
+            'ocean-treasures-alt': 'Trésors de l\'océan',
+            'islamic-placeholder': 'Veuillez fournir des images pour les histoires islamiques.',
+            'funny-placeholder': 'Veuillez fournir des images pour les histoires amusantes.',
+            'family-placeholder': 'Veuillez fournir des images pour les histoires de famille.',
+            'educational-placeholder': 'Veuillez fournir des images pour les histoires éducatives.',
+            'age-label': 'Âge',
+            'language-label': 'Langue',
+            'english-option': 'Anglais',
+            'french-option': 'Français',
+            'arabic-option': 'Arabe',
+            'child-photo-label': 'Photo de l\'enfant',
+            'upload-text': 'Cliquez pour télécharger ou faites glisser et déposer',
+            'click-to-upload': 'Cliquez pour télécharger',
+            'file-type-info': 'JPG, PNG, WEBP (MAX. 1 Mo)',
+            'submit-button': 'Créer une histoire'
+        }
+    };
 
-const productImages = {
-  Rouge: {
-    front: "assets/maillot-rouge.jpg",
-    back: "assets/maillot-rouge-dos.jpg",
-    altFront: "Maillot Maroc rouge face avant",
-    altBack: "Maillot Maroc rouge dos",
-    theme: "theme-red",
-  },
-  Blanc: {
-    front: "assets/maillot-blanc.jpg",
-    back: "assets/maillot-blanc-dos.jpg",
-    altFront: "Maillot Maroc blanc face avant",
-    altBack: "Maillot Maroc blanc dos",
-    theme: "theme-white",
-  },
-};
+    const langMap = {
+        'en': 'english',
+        'fr': 'french',
+        'ar': 'arabic'
+    };
 
-const form = document.querySelector("#orderForm");
-const jerseyImage = document.querySelector("#jerseyImage");
-const selectedColorLabel = document.querySelector("#selectedColorLabel");
-const selectedSizeLabel = document.querySelector("#selectedSizeLabel");
-const selectedSideLabel = document.querySelector("#selectedSideLabel");
-const flipPreviewButton = document.querySelector("#flipPreviewButton");
-const selectedPrice = document.querySelector("#selectedPrice");
-const priceInput = form.querySelector('input[name="prix"]');
-const colorsInput = form.querySelector('input[name="couleurs"]');
-const sizesInput = form.querySelector('input[name="tailles"]');
-const sizeGroups = document.querySelector("#sizeGroups");
-const formStatus = document.querySelector("#formStatus");
-const submitButton = form.querySelector(".submit-button");
-let previewSide = "front";
+    function updateContent(lang) {
+        const elements = document.querySelectorAll('[data-key]');
+        document.body.lang = lang;
+        elements.forEach(el => {
+            const key = el.getAttribute('data-key');
+            if (translations[lang][key]) {
+                if (el.tagName === 'INPUT' && el.type === 'text') {
+                    el.placeholder = translations[lang][key];
+                } else if (el.tagName === 'IMG' && el.hasAttribute('data-alt-key')) {
+                    const altKey = el.getAttribute('data-alt-key');
+                    el.alt = translations[lang][altKey];
+                } else {
+                    el.textContent = translations[lang][key];
+                }
+            }
+        });
 
-function updateActiveChoices(groupName) {
-  document.querySelectorAll(`input[name="${groupName}"]`).forEach((input) => {
-    input.closest(".choice").classList.toggle("active", input.checked);
-  });
-}
+        // Update the language select to match the button selection
+        const languageSelect = document.getElementById('language');
+        if (languageSelect) {
+            languageSelect.value = langMap[lang];
+        }
+    }
 
-function updateColor(color) {
-  const product = productImages[color];
-  if (!product) return;
+    const englishButton = document.getElementById('english-button');
+    const frenchButton = document.getElementById('french-button');
+    const arabicButton = document.getElementById('arabic-button');
 
-  document.body.classList.remove("theme-red", "theme-white");
-  document.body.classList.add(product.theme);
-  jerseyImage.src = product[previewSide];
-  jerseyImage.alt = previewSide === "front" ? product.altFront : product.altBack;
-  selectedColorLabel.textContent = `Couleur: ${color}`;
-  selectedSideLabel.textContent = previewSide === "front" ? "Face avant" : "Dos";
-  flipPreviewButton.setAttribute(
-    "aria-label",
-    previewSide === "front" ? "Voir le dos du maillot" : "Voir la face avant du maillot",
-  );
-}
 
-function getDefaultColor() {
-  return form.querySelector('input[name="couleur"]:checked')?.value || "Rouge";
-}
 
-function getQuantity() {
-  return Number(form.querySelector('input[name="quantite"]:checked')?.value || 1);
-}
+    if (englishButton) {
+        englishButton.addEventListener('click', () => {
+            updateContent('en');
+        });
+    }
+    if (frenchButton) {
+        frenchButton.addEventListener('click', () => {
+            updateContent('fr');
+        });
+    }
+    if (arabicButton) {
+        arabicButton.addEventListener('click', () => {
+            updateContent('ar');
+        });
+    }
 
-function getSelectedSizes() {
-  return Array.from(sizeGroups.querySelectorAll("input[data-kind='size']:checked")).map((input) => input.value);
-}
+    // Functionality to automatically capitalize the child's name
+    const childNameInput = document.getElementById('child-name');
+    if (childNameInput) {
+        childNameInput.addEventListener('input', (event) => {
+            event.target.value = event.target.value.toUpperCase();
+        });
+    }
 
-function getSelectedColors() {
-  return Array.from(sizeGroups.querySelectorAll("input[data-kind='color']:checked")).map((input) => input.value);
-}
-
-function formatChoiceLabel(colors, sizes) {
-  if (sizes.length <= 1) return `${colors[0] || "Rouge"} / ${sizes[0] || "M"}`;
-  return colors.map((color, index) => `${index + 1}-${color} ${sizes[index] || "M"}`).join(" / ");
-}
-
-function updatePrice() {
-  const quantity = getQuantity();
-  const price = PRICE_BY_QUANTITY[quantity] || PRICE_BY_QUANTITY[1];
-  const colors = getSelectedColors();
-  const sizes = getSelectedSizes();
-
-  selectedPrice.textContent = price;
-  priceInput.value = price;
-  colorsInput.value = colors.join(", ");
-  sizesInput.value = sizes.join(", ");
-  selectedSizeLabel.textContent = formatChoiceLabel(colors, sizes);
-
-  const firstColor = colors[0] || getDefaultColor();
-  updateColor(firstColor);
-}
-
-function createItemColorOptions(index, selectedColor) {
-  const label = document.createElement("span");
-  label.className = "item-option-label";
-  label.textContent = "Couleur";
-
-  const options = document.createElement("div");
-  options.className = "option-grid item-color-options";
-
-  COLORS.forEach((color) => {
-    const choice = document.createElement("label");
-    choice.className = `choice${color === selectedColor ? " active" : ""}`;
-
-    const input = document.createElement("input");
-    input.type = "radio";
-    input.name = `couleur_${index + 1}`;
-    input.value = color;
-    input.checked = color === selectedColor;
-    input.dataset.kind = "color";
-
-    const swatch = document.createElement("span");
-    swatch.className = `mini-swatch ${color === "Rouge" ? "swatch-red" : "swatch-white"}`;
-
-    const text = document.createElement("span");
-    text.textContent = color;
-
-    choice.append(input, swatch, text);
-    options.appendChild(choice);
-  });
-
-  return [label, options];
-}
-
-function createItemSizeOptions(index, selectedSize) {
-  const label = document.createElement("span");
-  label.className = "item-option-label";
-  label.textContent = "Taille";
-
-  const options = document.createElement("div");
-  options.className = "option-grid size-options";
-
-  SIZES.forEach((size) => {
-    const choice = document.createElement("label");
-    choice.className = `choice${size === selectedSize ? " active" : ""}`;
-
-    const input = document.createElement("input");
-    input.type = "radio";
-    input.name = `taille_${index + 1}`;
-    input.value = size;
-    input.checked = size === selectedSize;
-    input.dataset.kind = "size";
-
-    const text = document.createElement("span");
-    text.textContent = size;
-
-    choice.append(input, text);
-    options.appendChild(choice);
-  });
-
-  return [label, options];
-}
-
-function renderSizeGroups(forceDefaultColor = false) {
-  const quantity = getQuantity();
-  const previousSizes = getSelectedSizes();
-  const previousColors = getSelectedColors();
-  const defaultColor = getDefaultColor();
-
-  sizeGroups.innerHTML = "";
-
-  for (let index = 0; index < quantity; index += 1) {
-    const selectedColor = forceDefaultColor ? defaultColor : previousColors[index] || previousColors[0] || defaultColor;
-    const selectedSize = previousSizes[index] || previousSizes[0] || "M";
-    const group = document.createElement("div");
-    group.className = "size-group";
-
-    const title = document.createElement("span");
-    title.className = "size-group-title";
-    title.textContent = quantity === 1 ? "Maillot 1" : `Maillot ${index + 1}`;
-    group.appendChild(title);
-
-    group.append(...createItemColorOptions(index, selectedColor));
-    group.append(...createItemSizeOptions(index, selectedSize));
-    sizeGroups.appendChild(group);
-  }
-
-  updatePrice();
-}
-
-document.querySelectorAll('input[name="couleur"]').forEach((input) => {
-  input.addEventListener("change", () => {
-    updateActiveChoices("couleur");
-    renderSizeGroups(true);
-  });
-});
-
-document.querySelectorAll('input[name="quantite"]').forEach((input) => {
-  input.addEventListener("change", () => {
-    updateActiveChoices("quantite");
-    renderSizeGroups();
-  });
-});
-
-flipPreviewButton.addEventListener("click", () => {
-  previewSide = previewSide === "front" ? "back" : "front";
-  updateColor(getSelectedColors()[0] || getDefaultColor());
-});
-
-sizeGroups.addEventListener("change", (event) => {
-  if (!event.target.matches("input[type='radio']")) return;
-
-  const optionGrid = event.target.closest(".option-grid");
-  optionGrid.querySelectorAll(".choice").forEach((choice) => {
-    choice.classList.toggle("active", choice.contains(event.target));
-  });
-  updatePrice();
-});
-
-function setStatus(message, type = "") {
-  formStatus.textContent = message;
-  formStatus.className = `form-status ${type}`.trim();
-}
-
-function buildOrderPayload() {
-  const data = new FormData(form);
-  data.append("source", window.location.href);
-  data.append("date", new Date().toISOString());
-  return new URLSearchParams(data);
-}
-
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
-
-  if (!GOOGLE_SCRIPT_URL) {
-    setStatus("Ajoutez d'abord l'URL Google Apps Script dans script.js pour recevoir les commandes.", "error");
-    return;
-  }
-
-  submitButton.disabled = true;
-  setStatus("Envoi de la commande...");
-
-  try {
-    await fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
-      body: buildOrderPayload(),
+    const ageButtons = document.querySelectorAll('.age-option');
+    const ageInput = document.getElementById('age-input');
+    
+    ageButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            ageButtons.forEach(btn => btn.classList.remove('selected-age'));
+            button.classList.add('selected-age');
+            if (ageInput) {
+                ageInput.value = button.getAttribute('data-value');
+            }
+        });
     });
 
-    form.reset();
-    document.querySelector('input[name="couleur"][value="Rouge"]').checked = true;
-    document.querySelector('input[name="quantite"][value="1"]').checked = true;
-    updateActiveChoices("couleur");
-    updateActiveChoices("quantite");
-    renderSizeGroups();
-    setStatus("Commande envoyée. Merci, nous vous contacterons rapidement.", "success");
-  } catch (error) {
-    setStatus("Impossible d'envoyer la commande. Vérifiez la connexion et l'URL Google Script.", "error");
-  } finally {
-    submitButton.disabled = false;
-  }
-});
+    const storyCategorySelect = document.getElementById('story-category');
+    const storyImageContainers = document.querySelectorAll('.story-image-container');
+    const storyImageInput = document.getElementById('story-image-input');
+    
 
-renderSizeGroups();
+    
+    if (storyCategorySelect) {
+        storyCategorySelect.addEventListener('change', (event) => {
+            const selectedCategory = event.target.value;
+            storyImageContainers.forEach(container => {
+                if (container.getAttribute('data-category') === selectedCategory) {
+                    container.style.display = 'grid';
+                } else {
+                    container.style.display = 'none';
+                }
+            });
+            if (storyImageInput) {
+                storyImageInput.value = ''; // Reset selected story when category changes
+            }
+            document.querySelectorAll('.story-image').forEach(img => img.classList.remove('selected-story-image'));
+        });
+    }
+
+    document.querySelectorAll('.story-image-container').forEach(container => {
+                    container.addEventListener('click', (event) => {
+                const image = event.target.closest('.story-image');
+                if (image) {
+                    // Remove the selection from all images first
+                    document.querySelectorAll('.story-image').forEach(img => img.classList.remove('selected-story-image'));
+                    // Then, add the selection to the clicked image
+                    image.classList.add('selected-story-image');
+                    if (storyImageInput) {
+                        storyImageInput.value = image.getAttribute('data-value');
+                    }
+                }
+            });
+    });
+    
+    // Footer Language Dropdown Functionality
+    const footerLanguageSelect = document.getElementById('footer-language');
+    if (footerLanguageSelect) {
+        footerLanguageSelect.addEventListener('change', (event) => {
+            const selectedLanguage = event.target.value;
+            
+            // Map the footer language values to the main language system
+            const languageMap = {
+                'english': 'en',
+                'french': 'fr',
+                'spanish': 'es', // Note: Spanish not currently supported in main translations
+                'arabic': 'ar'
+            };
+            
+            const mappedLang = languageMap[selectedLanguage];
+            if (mappedLang && translations[mappedLang]) {
+                updateContent(mappedLang);
+                
+                // Update the main form language select to match
+                const mainLanguageSelect = document.getElementById('language');
+                if (mainLanguageSelect) {
+                    mainLanguageSelect.value = selectedLanguage;
+                }
+                
+                // Update the language buttons to show the selected state
+                const englishButton = document.getElementById('english-button');
+                const frenchButton = document.getElementById('french-button');
+                const arabicButton = document.getElementById('arabic-button');
+                
+                // Reset all buttons
+                [englishButton, frenchButton, arabicButton].forEach(btn => {
+                    if (btn) {
+                        btn.classList.remove('bg-indigo-500', 'text-white');
+                        btn.classList.add('text-gray-600');
+                    }
+                });
+                
+                // Highlight the selected button
+                if (mappedLang === 'en' && englishButton) {
+                    englishButton.classList.add('bg-indigo-500', 'text-white');
+                    englishButton.classList.remove('text-gray-600');
+                } else if (mappedLang === 'fr' && frenchButton) {
+                    frenchButton.classList.add('bg-indigo-500', 'text-white');
+                    frenchButton.classList.remove('text-gray-600');
+                } else if (mappedLang === 'ar' && arabicButton) {
+                    arabicButton.classList.add('bg-indigo-500', 'text-white');
+                    arabicButton.classList.remove('text-gray-600');
+                }
+            }
+        });
+    }
+
+});
